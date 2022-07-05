@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0;</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>LingDev.Logging</RootNamespace>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>LingDev.Logging.xml</DocumentationFile>
+	  <Version>1.0.0</Version>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<AssemblyName>LingDev.Logging</AssemblyName>
+		<Title>LingDev.Logging</Title>
+		<Product>LingDev.Logging</Product>
+		<PackageTags>lingdev;logging;logger;</PackageTags>
+		<Description>A dotnet library for logging.</Description>
+		<Authors>LingDev</Authors>
+		<PackageId>LingDev.Logging</PackageId>
+		<Copyright>Copyright © 2022 Lingdev. All rights reserved.</Copyright>
+		<NeutralLanguage>en</NeutralLanguage>
+		<license>https://raw.githubusercontent.com/ling921/DotNetLibrary/master/LICENSE</license>
+		<RootNamespace>LingDev.Logging</RootNamespace>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/ling921/DotNetLibrary</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/ling921/DotNetLibrary</RepositoryUrl>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageReleaseNotes>Please Check [Release Notes](https://github.com/ling921/DotNetLibrary/tree/master/docs)</PackageReleaseNotes>
+		<RepositoryType>Github</RepositoryType>
+		<PackageOutputPath>.nuget</PackageOutputPath>
+	</PropertyGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="6.0.0" />
+		<PackageReference Include="System.Text.Json" Version="6.0.5" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="..\..\resources\icon.png" Link="icon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</Content>
+	</ItemGroup>
+
+</Project>

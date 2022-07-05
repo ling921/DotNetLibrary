@@ -1,0 +1,720 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LingDev.EntityFrameworkCore.Audit</name>
+    </assembly>
+    <members>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Attributes.AnonymousAuditingAttribute">
+            <summary>
+            Indicates the class allowed anonymous auditing of specific database operations.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Attributes.AnonymousAuditingAttribute.Operation">
+            <summary>
+            The database operations allowed anonymous auditing.
+            </summary>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.Attributes.AnonymousAuditingAttribute.#ctor(LingDev.EntityFrameworkCore.Audit.Models.DbOperation)">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="operation">The database operations allowed anonymous auditing.</param>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Attributes.DisableAuditingAttribute">
+            <summary>
+            Indicates the class or property is marked as not auditable.
+            </summary>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.AuditDbContext`3">
+            <summary>
+            <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> for auditing.
+            </summary>
+            <typeparam name="TDbContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> object.</typeparam>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+            <typeparam name="TKey">The type of the primary key for users.</typeparam>
+        </member>
+        <member name="F:LingDev.EntityFrameworkCore.Audit.AuditDbContext`3.Logger">
+            <summary>
+            The logger.
+            </summary>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.AuditDbContext`3.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{`0})">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="options">The options for this context.</param>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.AuditDbContext`3.SaveChangesAsync(System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.AuditDbContext`3.SaveChanges(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.AuditDbContext`3.GetOperatorId">
+            <summary>
+            Get the Id of the current operator.
+            </summary>
+            <returns>The Id of the current operator if exists, otherwise <see langword="default"/>.</returns>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.AuditDbContext`3.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc/>
+            <param name="builder">The builder being used to construct the model for this context.</param>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.AuditDbContext`3.ConfigureModels(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Configure the entity models.
+            </summary>
+            <param name="builder">The builder being used to construct the model for this context.</param>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.AuditOptions">
+            <summary>
+            Options to configure the behavior of audited entities.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.AuditOptions.AllowAnonymousCreate">
+            <summary>
+            Whether to allow anonymous creation of audit entities, default to <see langword="false"/>.
+            <para>
+            An <see cref="T:System.InvalidOperationException"/> will be thrown when anonymous creation,
+            you can use <see cref="T:LingDev.EntityFrameworkCore.Audit.Attributes.AnonymousAuditingAttribute"/> to specify anonymous operations that entities can perform.
+            </para>
+            <para>
+            If <see langword="true"/>, it will allow anonymous creation for all audit entities.
+            </para>
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.AuditOptions.AllowAnonymousModify">
+            <summary>
+            Whether to allow anonymous modification of audit entities, default to <see langword="false"/>.
+            <para>
+            An <see cref="T:System.InvalidOperationException"/> will be thrown when anonymous modification,
+            you can use <see cref="T:LingDev.EntityFrameworkCore.Audit.Attributes.AnonymousAuditingAttribute"/> to specify anonymous operations that entities can perform.
+            </para>
+            <para>
+            If <see langword="true"/>, it will allow anonymous modification for all audit entities.
+            </para>
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.AuditOptions.AllowAnonymousDelete">
+            <summary>
+            Whether to allow anonymous deletion of audit entities, default to <see langword="false"/>.
+            <para>
+            An <see cref="T:System.InvalidOperationException"/> will be thrown when anonymous deletion,
+            you can use <see cref="T:LingDev.EntityFrameworkCore.Audit.Attributes.AnonymousAuditingAttribute"/> to specify anonymous operations that entities can perform.
+            </para>
+            <para>
+            If <see langword="true"/>, it will allow anonymous deletion for all audit entities.
+            </para>
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.AuditOptions.Comments">
+            <summary>
+            Comments.
+            </summary>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.AuditEntityComments">
+            <summary>
+            Comments to the audited entities.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.AuditEntityComments.Id">
+            <summary>
+            Comment to Id property.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.AuditEntityComments.CreationTime">
+            <summary>
+            Comment to CreationTime property.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.AuditEntityComments.CreatorId">
+            <summary>
+            Comment to CreatorId property.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.AuditEntityComments.LastModificationTime">
+            <summary>
+            Comment to LastModificationTime property.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.AuditEntityComments.LastModifierId">
+            <summary>
+            Comment to LastModifierId property.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.AuditEntityComments.IsDeleted">
+            <summary>
+            Comment to IsDeleted property.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.AuditEntityComments.DeletionTime">
+            <summary>
+            Comment to DeletionTime property.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.AuditEntityComments.DeleterId">
+            <summary>
+            Comment to DeleterId property.
+            </summary>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Entities.CreationAndModificationAuditedEntity`2">
+            <summary>
+            Base class for entity has both created and modified user information.
+            </summary>
+            <typeparam name="TKey">The type of the primary key of this entity.</typeparam>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.CreationAndModificationAuditedEntity`2.CreationTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.CreationAndModificationAuditedEntity`2.Creator">
+            <inheritdoc/>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.CreationAndModificationAuditedEntity`2.LastModificationTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.CreationAndModificationAuditedEntity`2.LastModifier">
+            <inheritdoc/>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Entities.CreationAuditedEntity`2">
+            <summary>
+            Base class for entity has created user information.
+            </summary>
+            <typeparam name="TKey">The type of the primary key of this entity.</typeparam>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.CreationAuditedEntity`2.CreationTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.CreationAuditedEntity`2.Creator">
+            <inheritdoc/>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Entities.ICreationAuditedEntity`1">
+            <summary>
+            This interface can be implemented to store creation information.
+            </summary>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Entities.IHasCreationTime">
+            <summary>
+            A standard interface to add CreationTime property.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.IHasCreationTime.CreationTime">
+            <summary>
+            The created time for this entity.
+            </summary>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Entities.IHasCreator`1">
+            <summary>
+            A standard interface to add Creator property.
+            </summary>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.IHasCreator`1.Creator">
+            <summary>
+            The user who created this entity.
+            </summary>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Entities.DeletionAuditedEntity`2">
+            <summary>
+            Base class for entity has deleted user information.
+            </summary>
+            <typeparam name="TKey">The type of the primary key of this entity.</typeparam>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.DeletionAuditedEntity`2.IsDeleted">
+            <inheritdoc/>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.DeletionAuditedEntity`2.DeletionTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.DeletionAuditedEntity`2.Deleter">
+            <inheritdoc/>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Entities.IDeletionAuditedEntity`1">
+            <summary>
+            This interface can be implemented to store deletion information.
+            </summary>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Entities.IHasDeleter`1">
+            <summary>
+            A standard interface to add Deleter property.
+            </summary>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.IHasDeleter`1.Deleter">
+            <summary>
+            The user who deleted this entity.
+            </summary>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Entities.IHasDeletionTime">
+            <summary>
+            A standard interface to add DeletionTime property to a class.
+            It also makes the class soft delete.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.IHasDeletionTime.DeletionTime">
+            <summary>
+            The deleted time for this entity.
+            </summary>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Entities.ISoftDelete">
+            <summary>
+            Interface to make your entity "soft delete".
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.ISoftDelete.IsDeleted">
+            <summary>
+            Used to mark an entity as deleted instead of actually deleting it.
+            </summary>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Entities.FullAuditedEntity`2">
+            <summary>
+            Base class for entity has created, modified and deleted user information.
+            </summary>
+            <typeparam name="TKey">The type of the primary key of this entity.</typeparam>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.FullAuditedEntity`2.CreationTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.FullAuditedEntity`2.Creator">
+            <inheritdoc/>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.FullAuditedEntity`2.LastModificationTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.FullAuditedEntity`2.LastModifier">
+            <inheritdoc/>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.FullAuditedEntity`2.IsDeleted">
+            <inheritdoc/>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.FullAuditedEntity`2.DeletionTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.FullAuditedEntity`2.Deleter">
+            <inheritdoc/>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Entities.ModificationAuditedEntity`2">
+            <summary>
+            Base class for entity has modified user information.
+            </summary>
+            <typeparam name="TKey">The type of the primary key of this entity.</typeparam>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.ModificationAuditedEntity`2.LastModificationTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.ModificationAuditedEntity`2.LastModifier">
+            <inheritdoc/>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Entities.IHasModificationTime">
+            <summary>
+            A standard interface to add DeletionTime property to a class.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.IHasModificationTime.LastModificationTime">
+            <summary>
+            The last modified time for this entity.
+            </summary>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Entities.IHasModifier`1">
+            <summary>
+            A standard interface to add LastModifier property.
+            </summary>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Entities.IHasModifier`1.LastModifier">
+            <summary>
+            The user who modified this entity.
+            </summary>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Entities.IModificationAuditedEntity`1">
+            <summary>
+            This interface can be implemented to store modification information.
+            </summary>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`1">
+            <summary>
+            Base class for the Entity Framework database context used for identity and auditing.
+            </summary>
+            <typeparam name="TDbContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> object.</typeparam>
+            <inheritdoc/>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`1.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{`0})">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="options">The options for this context.</param>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`3">
+            <summary>
+            Base class for the Entity Framework database context used for identity and auditing..
+            </summary>
+            <typeparam name="TDbContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> object.</typeparam>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+            <typeparam name="TKey">The type of the primary key for users and roles.</typeparam>
+            <inheritdoc/>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`3.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{`0})">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="options">The options for this context.</param>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`4">
+            <summary>
+            Base class for the Entity Framework database context used for identity and auditing..
+            </summary>
+            <typeparam name="TDbContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> object.</typeparam>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+            <typeparam name="TRole">The type of role objects.</typeparam>
+            <typeparam name="TKey">The type of the primary key for users and roles.</typeparam>
+            <inheritdoc/>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`4.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{`0})">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="options">The options for this context.</param>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`9">
+            <summary>
+            Base class for the Entity Framework database context used for identity and auditing.
+            </summary>
+            <typeparam name="TDbContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> object.</typeparam>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+            <typeparam name="TRole">The type of role objects.</typeparam>
+            <typeparam name="TKey">The type of the primary key for users and roles.</typeparam>
+            <typeparam name="TUserClaim">The type of user claim objects.</typeparam>
+            <typeparam name="TUserRole">The type of user role objects.</typeparam>
+            <typeparam name="TUserLogin">The type of user login objects.</typeparam>
+            <typeparam name="TRoleClaim">The type of role claim objects.</typeparam>
+            <typeparam name="TUserToken">The type of user token objects.</typeparam>
+            <inheritdoc/>
+        </member>
+        <member name="F:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`9.Logger">
+            <summary>
+            Logger.
+            </summary>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`9.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{`0})">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="options">The options for this context.</param>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`9.SaveChangesAsync(System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`9.SaveChanges(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`9.GetOperatorId">
+            <summary>
+            Get the Id of the current operator.
+            </summary>
+            <returns>The Id of the current operator if exists, otherwise <see langword="default"/>.</returns>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`9.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`9.ConfigureModels(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Configure the entity models.
+            </summary>
+            <param name="builder">The builder being used to construct the model for this context.</param>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Identity.IdentityRole`1">
+            <inheritdoc/>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.Identity.IdentityRole`1.GetKeys">
+            <inheritdoc/>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Identity.IdentityRoleClaim`1">
+            <inheritdoc/>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.Identity.IdentityRoleClaim`1.GetKeys">
+            <inheritdoc/>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Identity.IdentityUser`1">
+            <inheritdoc/>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.Identity.IdentityUser`1.GetKeys">
+            <inheritdoc/>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Identity.IdentityUserClaim`1">
+            <inheritdoc/>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.Identity.IdentityUserClaim`1.GetKeys">
+            <inheritdoc/>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Identity.IdentityUserLogin`1">
+            <inheritdoc/>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.Identity.IdentityUserLogin`1.GetKeys">
+            <inheritdoc/>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Identity.IdentityUserRole`1">
+            <inheritdoc/>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.Identity.IdentityUserRole`1.GetKeys">
+            <inheritdoc/>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Identity.IdentityUserToken`1">
+            <inheritdoc/>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.Identity.IdentityUserToken`1.GetKeys">
+            <inheritdoc/>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Internal.ModelBuilderExtensions">
+            <summary>
+            Extension methods for building model.
+            </summary>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Audit.Internal.ModelBuilderExtensions.ConfigureAuditEntityProperties``1(Microsoft.EntityFrameworkCore.ModelBuilder,LingDev.EntityFrameworkCore.Audit.AuditEntityComments)">
+            <summary>
+            Configure properties of audit entities.
+            </summary>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+            <param name="modelBuilder">Entity model builder.</param>
+            <param name="comments">Comments to the audited entities.</param>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Models.AuditLog`1">
+            <summary>
+            Audit log.
+            </summary>
+            <typeparam name="TUser">The type of operator.</typeparam>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Models.AuditLog`1.EntityId">
+            <summary>
+            The primary key of changed entity.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Models.AuditLog`1.EntityType">
+            <summary>
+            The type of changed entity.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Models.AuditLog`1.EventType">
+            <summary>
+            The type of audit event.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Models.AuditLog`1.EventTime">
+            <summary>
+            The time the audit event occurred.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Models.AuditLog`1.Operator">
+            <summary>
+            The user who change entity.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Models.AuditLog`1.Details">
+            <summary>
+            The details of this audit log.
+            </summary>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Models.AuditLogDetail">
+            <summary>
+            Detail of <see cref="T:LingDev.EntityFrameworkCore.Audit.Models.AuditLog`1"/>.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Models.AuditLogDetail.AuditLogId">
+            <summary>
+            The primary key of the AuditLog that the detail belongs to.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Models.AuditLogDetail.PropertyName">
+            <summary>
+            Property name.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Models.AuditLogDetail.OriginalValue">
+            <summary>
+            Original value, more than 128 characters will be truncated.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Audit.Models.AuditLogDetail.NewValue">
+            <summary>
+            New value, more than 128 characters will be truncated.
+            </summary>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Models.DbOperation">
+            <summary>
+            Enum that specifies database operation.
+            </summary>
+        </member>
+        <member name="F:LingDev.EntityFrameworkCore.Audit.Models.DbOperation.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:LingDev.EntityFrameworkCore.Audit.Models.DbOperation.Read">
+            <summary>
+            Read.
+            </summary>
+        </member>
+        <member name="F:LingDev.EntityFrameworkCore.Audit.Models.DbOperation.Create">
+            <summary>
+            Create.
+            </summary>
+        </member>
+        <member name="F:LingDev.EntityFrameworkCore.Audit.Models.DbOperation.Update">
+            <summary>
+            Update.
+            </summary>
+        </member>
+        <member name="F:LingDev.EntityFrameworkCore.Audit.Models.DbOperation.Delete">
+            <summary>
+            Delete.
+            </summary>
+        </member>
+        <member name="F:LingDev.EntityFrameworkCore.Audit.Models.DbOperation.CUD">
+            <summary>
+            Create, Update and Delete.
+            </summary>
+        </member>
+        <member name="F:LingDev.EntityFrameworkCore.Audit.Models.DbOperation.CRUD">
+            <summary>
+            Create, Read, Update and Delete.
+            </summary>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Audit.Models.EventType">
+            <summary>
+            Enum that specifies audit event type..
+            </summary>
+        </member>
+        <member name="F:LingDev.EntityFrameworkCore.Audit.Models.EventType.Create">
+            <summary>
+            Create entity.
+            </summary>
+        </member>
+        <member name="F:LingDev.EntityFrameworkCore.Audit.Models.EventType.Modify">
+            <summary>
+            Modify entity.
+            </summary>
+        </member>
+        <member name="F:LingDev.EntityFrameworkCore.Audit.Models.EventType.Delete">
+            <summary>
+            Delete entity.
+            </summary>
+        </member>
+        <member name="F:LingDev.EntityFrameworkCore.Audit.Models.EventType.SoftDelete">
+            <summary>
+            Soft delete entity.
+            </summary>
+        </member>
+        <member name="F:LingDev.EntityFrameworkCore.Audit.Models.EventType.Recovery">
+            <summary>
+            Recovery soft-deleted entity.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.AuditExtensions">
+            <summary>
+            Extension methods for Dependency Injection.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AuditExtensions.AddAuditDbContext``3(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},System.Action{LingDev.EntityFrameworkCore.Audit.AuditOptions},Microsoft.Extensions.DependencyInjection.ServiceLifetime,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+            <summary>
+            Registers the given <see cref="T:LingDev.EntityFrameworkCore.Audit.AuditDbContext`3"/> as a service in the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.
+            </summary>
+            <typeparam name="TDbContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> object.</typeparam>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+            <typeparam name="TKey">The type of the primary key for users.</typeparam>
+            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to add services to.</param>
+            <param name="optionsAction">
+            An optional action to configure the <see cref="T:Microsoft.EntityFrameworkCore.DbContextOptions"/> for the context. This provides an alternative
+            to performing configuration of the context by overriding the <see cref="M:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> method in
+            your derived context.
+            </param>
+            <param name="setupAcion"></param>
+            <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
+            <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
+            <returns>The same service collection so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AuditExtensions.AddIdentityAuditDbContext``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},System.Action{LingDev.EntityFrameworkCore.Audit.AuditOptions},Microsoft.Extensions.DependencyInjection.ServiceLifetime,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+            <summary>
+            Registers the given <see cref="T:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`1"/> as a service in the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.
+            </summary>
+            <typeparam name="TDbContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> object.</typeparam>
+            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to add services to.</param>
+            <param name="optionsAction">
+            An optional action to configure the <see cref="T:Microsoft.EntityFrameworkCore.DbContextOptions"/> for the context. This provides an alternative
+            to performing configuration of the context by overriding the <see cref="M:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> method in
+            your derived context.
+            </param>
+            <param name="setupAcion"></param>
+            <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
+            <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
+            <returns>The same service collection so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AuditExtensions.AddIdentityAuditDbContext``3(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},System.Action{LingDev.EntityFrameworkCore.Audit.AuditOptions},Microsoft.Extensions.DependencyInjection.ServiceLifetime,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+            <summary>
+            Registers the given <see cref="T:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`3"/> as a service in the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.
+            </summary>
+            <typeparam name="TDbContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> object.</typeparam>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+            <typeparam name="TKey">The type of the primary key for users and roles.</typeparam>
+            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to add services to.</param>
+            <param name="optionsAction">
+            An optional action to configure the <see cref="T:Microsoft.EntityFrameworkCore.DbContextOptions"/> for the context. This provides an alternative
+            to performing configuration of the context by overriding the <see cref="M:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> method in
+            your derived context.
+            </param>
+            <param name="setupAcion"></param>
+            <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
+            <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
+            <returns>The same service collection so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AuditExtensions.AddIdentityAuditDbContext``4(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},System.Action{LingDev.EntityFrameworkCore.Audit.AuditOptions},Microsoft.Extensions.DependencyInjection.ServiceLifetime,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+            <summary>
+            Registers the given <see cref="T:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`4"/> as a service in the
+            <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.
+            </summary>
+            <typeparam name="TDbContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> object.</typeparam>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+            <typeparam name="TRole">The type of role objects.</typeparam>
+            <typeparam name="TKey">The type of the primary key for users and roles.</typeparam>
+            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to add services to.</param>
+            <param name="optionsAction">
+            An optional action to configure the <see cref="T:Microsoft.EntityFrameworkCore.DbContextOptions"/> for the context. This provides an alternative
+            to performing configuration of the context by overriding the <see cref="M:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> method in
+            your derived context.
+            </param>
+            <param name="setupAcion"></param>
+            <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
+            <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
+            <returns>The same service collection so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AuditExtensions.AddIdentityAuditDbContext``9(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder},System.Action{LingDev.EntityFrameworkCore.Audit.AuditOptions},Microsoft.Extensions.DependencyInjection.ServiceLifetime,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+            <summary>
+            Registers the given <see cref="T:LingDev.EntityFrameworkCore.Audit.IdentityAuditDbContext`9"/> as a service in the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.
+            </summary>
+            <typeparam name="TDbContext">The type of <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> object.</typeparam>
+            <typeparam name="TUser">The type of user objects.</typeparam>
+            <typeparam name="TRole">The type of role objects.</typeparam>
+            <typeparam name="TKey">The type of the primary key for users and roles.</typeparam>
+            <typeparam name="TUserClaim">The type of user claim objects.</typeparam>
+            <typeparam name="TUserRole">The type of user role objects.</typeparam>
+            <typeparam name="TUserLogin">The type of user login objects.</typeparam>
+            <typeparam name="TRoleClaim">The type of role claim objects.</typeparam>
+            <typeparam name="TUserToken">The type of user token objects.</typeparam>
+            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to add services to.</param>
+            <param name="optionsAction">
+            An optional action to configure the <see cref="T:Microsoft.EntityFrameworkCore.DbContextOptions"/> for the context. This provides an alternative
+            to performing configuration of the context by overriding the <see cref="M:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> method in
+            your derived context.
+            </param>
+            <param name="setupAcion"></param>
+            <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
+            <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
+            <returns>The same service collection so that multiple calls can be chained.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LingDev.Logging</name>
+    </assembly>
+    <members>
+        <member name="T:LingDev.Logging.FileLoggerFormatterConfigureOptions`2">
+            <summary>
+            Configures an option for <see cref="T:LingDev.Logging.File.FileLogger"/>.
+            </summary>
+            <typeparam name="TFormatter">The implementation type of <see cref="T:LingDev.Logging.File.FileFormatter"/>.</typeparam>
+            <typeparam name="TOptions">The implementation type of <see cref="T:LingDev.Logging.File.FileFormatterOptions"/>.</typeparam>
+        </member>
+        <member name="M:LingDev.Logging.FileLoggerFormatterConfigureOptions`2.#ctor(Microsoft.Extensions.Logging.Configuration.ILoggerProviderConfiguration{LingDev.Logging.File.FileLoggerProvider})">
+            <summary>
+            Constructor that takes the <see cref="T:Microsoft.Extensions.Logging.Configuration.ILoggerProviderConfiguration`1"/> instance to bind against.
+            </summary>
+            <param name="providerConfiguration">The configuration of provider.</param>
+        </member>
+        <member name="T:LingDev.Logging.FileLoggerFormatterOptionsChangeTokenSource`2">
+            <summary>
+            Creates <see cref="T:Microsoft.Extensions.Primitives.IChangeToken"/>s so that <see cref="T:Microsoft.Extensions.Options.IOptionsMonitor`1"/> gets notified when <see cref="T:Microsoft.Extensions.Configuration.IConfiguration"/> changes.
+            </summary>
+            <typeparam name="TFormatter">The implementation type of <see cref="T:LingDev.Logging.File.FileFormatter"/>.</typeparam>
+            <typeparam name="TOptions">The implementation type of <see cref="T:LingDev.Logging.File.FileFormatterOptions"/>.</typeparam>
+        </member>
+        <member name="M:LingDev.Logging.FileLoggerFormatterOptionsChangeTokenSource`2.#ctor(Microsoft.Extensions.Logging.Configuration.ILoggerProviderConfiguration{LingDev.Logging.File.FileLoggerProvider})">
+            <summary>
+            Constructor taking the <see cref="T:Microsoft.Extensions.Logging.Configuration.ILoggerProviderConfiguration`1"/> instance to watch.
+            </summary>
+            <param name="providerConfiguration"></param>
+        </member>
+        <member name="T:LingDev.Logging.File.FileFormatter">
+            <summary>
+            Allows custom log messages formatting
+            </summary>
+        </member>
+        <member name="P:LingDev.Logging.File.FileFormatter.Name">
+            <summary>
+            Gets the name associated with the console log formatter.
+            </summary>
+        </member>
+        <member name="M:LingDev.Logging.File.FileFormatter.#ctor(System.String)">
+            <summary>
+            Creates a <see cref="T:LingDev.Logging.File.FileFormatter"/>.
+            </summary>
+            <param name="name">The name of console log formatter.</param>
+            <exception cref="T:System.ArgumentNullException">The name can not be null.</exception>
+        </member>
+        <member name="M:LingDev.Logging.File.FileFormatter.Write``1(Microsoft.Extensions.Logging.Abstractions.LogEntry{``0}@,Microsoft.Extensions.Logging.IExternalScopeProvider,System.IO.TextWriter)">
+            <summary>
+            Writes the log message to the specified TextWriter.
+            </summary>
+            <typeparam name="TState">The type of the object to be written.</typeparam>
+            <param name="logEntry">The log entry.</param>
+            <param name="scopeProvider">The provider of scope data.</param>
+            <param name="textWriter">The string writer.</param>
+        </member>
+        <member name="T:LingDev.Logging.File.FileFormatterOptions">
+            <summary>
+            Options for the built-in file log formatter.
+            </summary>
+        </member>
+        <member name="P:LingDev.Logging.File.FileFormatterOptions.IncludeScopes">
+            <summary>
+            Includes scopes when true.
+            </summary>
+        </member>
+        <member name="P:LingDev.Logging.File.FileFormatterOptions.TimestampFormat">
+            <summary>
+            Gets or sets format string used to format timestamp in logging messages. Defaults to 'd'(short date).
+            </summary>
+        </member>
+        <member name="P:LingDev.Logging.File.FileFormatterOptions.UseUtcTimestamp">
+            <summary>
+            Gets or sets indication whether or not UTC timezone should be used to format timestamps in logging messages. Defaults to false.
+            </summary>
+        </member>
+        <member name="T:LingDev.Logging.File.FileLoggerOptions">
+            <summary>
+            Options for a <see cref="T:LingDev.Logging.File.FileLogger"/>.
+            </summary>
+        </member>
+        <member name="P:LingDev.Logging.File.FileLoggerOptions.FormatterName">
+            <summary>
+            Name of the log message formatter to use. Defaults to "default".
+            </summary>
+        </member>
+        <member name="P:LingDev.Logging.File.FileLoggerOptions.IncludeScopes">
+            <summary>
+            Includes scopes when true.
+            </summary>
+        </member>
+        <member name="P:LingDev.Logging.File.FileLoggerOptions.LogToErrorFile">
+            <summary>
+            Gets or sets value indicating the minimum level of messages that would get written to error file. Defaults to <see cref="F:Microsoft.Extensions.Logging.LogLevel.Error"/>.
+            </summary>
+        </member>
+        <member name="P:LingDev.Logging.File.FileLoggerOptions.TimestampFormat">
+            <summary>
+            Gets or sets format string used to format timestamp in logging messages. Defaults to "G".
+            </summary>
+        </member>
+        <member name="P:LingDev.Logging.File.FileLoggerOptions.UseUtcTimestamp">
+            <summary>
+            Gets or sets indication whether or not UTC timezone should be used to for timestamps in logging messages. Defaults to false.
+            </summary>
+        </member>
+        <member name="P:LingDev.Logging.File.FileLoggerOptions.LogFileName">
+            <summary>
+            The file name of the log.
+            <para>If log level great than <see cref="P:LingDev.Logging.File.FileLoggerOptions.LogToErrorFile"/> and <see cref="P:LingDev.Logging.File.FileLoggerOptions.ErrorFileName"/> is a valid filename, log would get written to error file.</para>
+            <para>Default value is <c>Logs/${shortdate}.log</c>.</para>
+            <para>Supported parameters: <c>shortdate</c>, <c>date</c></para>
+            <para><c>${shortdate}</c> shortdate can not have format.</para>
+            <para><c>${date:format}</c> date can customize date format.</para>
+            </summary>
+        </member>
+        <member name="P:LingDev.Logging.File.FileLoggerOptions.ErrorFileName">
+            <summary>
+            The file name of the error log.
+            <para>Default value is <c>Logs/${shortdate}.err.log</c>.</para>
+            <para>Supported parameters: <c>shortdate</c>, <c>date</c></para>
+            <para><c>${shortdate}</c> shortdate can not have format.</para>
+            <para><c>${date:format}</c> date can customize date format.</para>
+            </summary>
+        </member>
+        <member name="T:LingDev.Logging.File.FileLoggerProvider">
+            <summary>
+            A provider of <see cref="T:LingDev.Logging.File.FileLogger"/> instances.
+            </summary>
+        </member>
+        <member name="M:LingDev.Logging.File.FileLoggerProvider.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{LingDev.Logging.File.FileLoggerOptions})">
+            <summary>
+            Creates an instance of <see cref="T:LingDev.Logging.File.FileLoggerProvider"/>.
+            </summary>
+            <param name="options">The options to create <see cref="T:LingDev.Logging.File.FileLogger"/> instances with.</param>
+        </member>
+        <member name="M:LingDev.Logging.File.FileLoggerProvider.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{LingDev.Logging.File.FileLoggerOptions},System.Collections.Generic.IEnumerable{LingDev.Logging.File.FileFormatter})">
+            <summary>
+            Creates an instance of <see cref="T:LingDev.Logging.File.FileLoggerProvider"/>.
+            </summary>
+            <param name="options">The options to create <see cref="T:LingDev.Logging.File.FileLogger"/> instances with.</param>
+            <param name="formatters">Log formatters added for <see cref="T:LingDev.Logging.File.FileLogger"/> insteaces.</param>
+        </member>
+        <member name="M:LingDev.Logging.File.FileLoggerProvider.CreateLogger(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LingDev.Logging.File.FileLoggerProvider.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:LingDev.Logging.StructuredValuesFormatter">
+            <summary>
+            A structured values formatter.
+            </summary>
+        </member>
+        <member name="P:LingDev.Logging.StructuredValuesFormatter.OriginalFormat">
+            <summary>
+            The original format string.
+            </summary>
+        </member>
+        <member name="P:LingDev.Logging.StructuredValuesFormatter.ValueNames">
+            <summary>
+            A list of format value names in original format.
+            </summary>
+        </member>
+        <member name="M:LingDev.Logging.StructuredValuesFormatter.#ctor(System.String)">
+            <summary>
+            Initialize a <see cref="T:LingDev.Logging.StructuredValuesFormatter"/> with a format string.
+            </summary>
+            <param name="format">The format string.</param>
+            <exception cref="T:System.ArgumentNullException">The format string can not be null.</exception>
+        </member>
+        <member name="M:LingDev.Logging.StructuredValuesFormatter.GetFormatter(System.String)">
+            <summary>
+            Get an instance of <see cref="T:LingDev.Logging.StructuredValuesFormatter"/>.
+            </summary>
+            <param name="format">The format string.</param>
+            <returns>A <see cref="T:LingDev.Logging.StructuredValuesFormatter"/> instance for the format string.</returns>
+        </member>
+        <member name="M:LingDev.Logging.StructuredValuesFormatter.Format(System.Object[])">
+            <summary>
+            Replaces the format items in a string with the string representations of corresponding objects in a specified array.
+            </summary>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+            <returns>A copy of format in which the format items have been replaced by the string representation of the corresponding objects in args.</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.LoggerExtensions">
+            <summary>
+            Extension methods for Dependency Injection.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.LoggerExtensions.AddFile(Microsoft.Extensions.Logging.ILoggingBuilder)">
+            <summary>
+            Adds a file logger named 'File' to the factory.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Logging.ILoggingBuilder"/> to use.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Logging.ILoggingBuilder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.LoggerExtensions.AddFile(Microsoft.Extensions.Logging.ILoggingBuilder,System.Action{LingDev.Logging.File.FileLoggerOptions})">
+            <summary>
+            Adds a file logger named 'File' to the factory.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Logging.ILoggingBuilder"/> to use.</param>
+            <param name="configure">The <see cref="T:Microsoft.Extensions.Logging.ILoggingBuilder"/> to use.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Logging.ILoggingBuilder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.LoggerExtensions.AddFileFormatter``2(Microsoft.Extensions.Logging.ILoggingBuilder)">
+            <summary>
+            Adds a custom console logger formatter 'TFormatter' to be configured with options 'TOptions'.
+            </summary>
+            <typeparam name="TFormatter">The implementation type of <see cref="T:LingDev.Logging.File.FileFormatter"/>.</typeparam>
+            <typeparam name="TOptions">The implementation type of <see cref="T:LingDev.Logging.File.FileFormatterOptions"/>.</typeparam>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Logging.ILoggingBuilder"/> to use.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Logging.ILoggingBuilder"/>.</returns>
+        </member>
+    </members>
+</doc>
