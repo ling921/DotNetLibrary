@@ -91,11 +91,6 @@
             Includes scopes when true.
             </summary>
         </member>
-        <member name="P:LingDev.Logging.File.FileLoggerOptions.LogToErrorFile">
-            <summary>
-            Gets or sets value indicating the minimum level of messages that would get written to error file. Defaults to <see cref="F:Microsoft.Extensions.Logging.LogLevel.Error"/>.
-            </summary>
-        </member>
         <member name="P:LingDev.Logging.File.FileLoggerOptions.TimestampFormat">
             <summary>
             Gets or sets format string used to format timestamp in logging messages. Defaults to "G".
@@ -106,23 +101,54 @@
             Gets or sets indication whether or not UTC timezone should be used to for timestamps in logging messages. Defaults to false.
             </summary>
         </member>
-        <member name="P:LingDev.Logging.File.FileLoggerOptions.LogFileName">
+        <member name="P:LingDev.Logging.File.FileLoggerOptions.Path">
             <summary>
-            The file name of the log.
-            <para>If log level great than <see cref="P:LingDev.Logging.File.FileLoggerOptions.LogToErrorFile"/> and <see cref="P:LingDev.Logging.File.FileLoggerOptions.ErrorFileName"/> is a valid filename, log would get written to error file.</para>
-            <para>Default value is <c>Logs/${shortdate}.log</c>.</para>
-            <para>Supported parameters: <c>shortdate</c>, <c>date</c></para>
-            <para><c>${shortdate}</c> shortdate can not have format.</para>
-            <para><c>${date:format}</c> date can customize date format.</para>
+            Gets or sets the path where log files are saved. Defaults to "Logs".
             </summary>
         </member>
-        <member name="P:LingDev.Logging.File.FileLoggerOptions.ErrorFileName">
+        <member name="P:LingDev.Logging.File.FileLoggerOptions.WriteTo">
             <summary>
-            The file name of the error log.
-            <para>Default value is <c>Logs/${shortdate}.err.log</c>.</para>
-            <para>Supported parameters: <c>shortdate</c>, <c>date</c></para>
-            <para><c>${shortdate}</c> shortdate can not have format.</para>
-            <para><c>${date:format}</c> date can customize date format.</para>
+            Gets or sets the configurations for file writing. Defaults to <see cref="F:LingDev.Logging.File.FileWriteConfiguration.Default"/>.
+            </summary>
+        </member>
+        <member name="T:LingDev.Logging.File.FileWriteConfiguration">
+            <summary>
+            The configuration for file writing.
+            </summary>
+        </member>
+        <member name="P:LingDev.Logging.File.FileWriteConfiguration.Name">
+            <summary>
+            Gets or sets the file name of log messages that would get written to.
+            </summary>
+        </member>
+        <member name="P:LingDev.Logging.File.FileWriteConfiguration.MinLevel">
+            <summary>
+            Gets or sets value indicating the minimum level of messages that would get written to file. Defaults to <see cref="F:Microsoft.Extensions.Logging.LogLevel.None"/>.
+            </summary>
+        </member>
+        <member name="P:LingDev.Logging.File.FileWriteConfiguration.MaxLevel">
+            <summary>
+            Gets or sets value indicating the maximum level of messages that would get written to file. Defaults to <see cref="F:Microsoft.Extensions.Logging.LogLevel.None"/>.
+            </summary>
+        </member>
+        <member name="F:LingDev.Logging.File.FileWriteConfiguration.Default">
+            <summary>
+            Default configurations.
+            <para>It contains:</para>
+            <para><c>${date:yyyyMMdd}.log</c> for level is <see cref="F:Microsoft.Extensions.Logging.LogLevel.Information"/> or <see cref="F:Microsoft.Extensions.Logging.LogLevel.Warning"/>.</para>
+            <para><c>${date:yyyyMMdd}.err.log</c> for level is <see cref="F:Microsoft.Extensions.Logging.LogLevel.Error"/> or <see cref="F:Microsoft.Extensions.Logging.LogLevel.Critical"/>.</para>
+            </summary>
+        </member>
+        <member name="F:LingDev.Logging.File.FileWriteConfiguration.All">
+            <summary>
+            All configurations.
+            <para>It contains:</para>
+            <para><c>${date:yyyyMMdd}.trce.log</c> for level is <see cref="F:Microsoft.Extensions.Logging.LogLevel.Trace"/>.</para>
+            <para><c>${date:yyyyMMdd}.dbug.log</c> for level is <see cref="F:Microsoft.Extensions.Logging.LogLevel.Debug"/>.</para>
+            <para><c>${date:yyyyMMdd}.info.log</c> for level is <see cref="F:Microsoft.Extensions.Logging.LogLevel.Information"/>.</para>
+            <para><c>${date:yyyyMMdd}.warn.log</c> for level is <see cref="F:Microsoft.Extensions.Logging.LogLevel.Warning"/>.</para>
+            <para><c>${date:yyyyMMdd}.fail.log</c> for level is <see cref="F:Microsoft.Extensions.Logging.LogLevel.Error"/>.</para>
+            <para><c>${date:yyyyMMdd}.crit.log</c> for level is <see cref="F:Microsoft.Extensions.Logging.LogLevel.Critical"/>.</para>
             </summary>
         </member>
         <member name="T:LingDev.Logging.File.FileLoggerProvider">

@@ -65,7 +65,7 @@ internal class FileLogger : ILogger
             {
                 stringBuilder.Capacity = 1024;
             }
-            _queueProcessor.EnqueueMessage(new LogMessageEntry(message, logLevel >= Options.LogToErrorFile));
+            _queueProcessor.EnqueueMessage(new LogMessageEntry(message, logLevel));
         }
     }
 

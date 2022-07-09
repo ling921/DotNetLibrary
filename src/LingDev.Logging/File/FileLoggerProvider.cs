@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Collections.Concurrent;
-using System.Globalization;
-using System.Text.RegularExpressions;
 
 namespace LingDev.Logging.File;
 
@@ -45,12 +43,10 @@ public class FileLoggerProvider : ILoggerProvider, IDisposable
         SetFormatters(formatters);
         ReloadLoggerOptions(options.CurrentValue);
         _optionsReloadToken = _options.OnChange(ReloadLoggerOptions);
-        var date = DateTime.Now;
-        var nonErrorFileName = FormatFileName(options.CurrentValue.LogFileName, date);
-        var errorFileName = options.CurrentValue.LogToErrorFile != LogLevel.None
-            ? FormatFileName(options.CurrentValue.ErrorFileName, date)
-            : string.Empty;
-        _messageQueue = new FileLoggerProcessor(nonErrorFileName, errorFileName);
+        var writeTo = options.CurrentValue.WriteTo?.Length > 0
+            ? options.CurrentValue.WriteTo
+            : FileWriteConfiguration.Default;
+        _messageQueue = new FileLoggerProcessor(options.CurrentValue.Path, writeTo);
     }
 
     /// <inheritdoc/>
@@ -123,14 +119,9 @@ public class FileLoggerProvider : ILoggerProvider, IDisposable
             logger.Value.Options = options;
             logger.Value.Formatter = value;
         }
-    }
-
-    private static string FormatFileName(string format, DateTime date)
-    {
-        format = Regex.Replace(format.Replace("${shortdate}", "{1}"), @"\${date(:.+)?}", "{0$1}");
-        var shortDateString = date.ToString("d", CultureInfo.CurrentCulture)
-            .Replace("/", "-")
-            .Replace("\\", "-");
-        return string.Format(format, date, shortDateString);
+        var writeTo = options.WriteTo?.Length > 0
+            ? options.WriteTo
+            : FileWriteConfiguration.Default;
+        _messageQueue?.Reload(options.Path, writeTo);
     }
 }

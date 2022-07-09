@@ -1,4 +1,6 @@
-﻿namespace LingDev.Logging.File;
+﻿using System.Text.Json;
+
+namespace LingDev.Logging.File;
 
 /// <summary>
 /// Options for the built-in file log formatter.

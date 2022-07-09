@@ -2,6 +2,8 @@
 using LingDev.EntityFrameworkCore.Audit.Identity;
 using LingDev.EntityFrameworkCore.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -11,11 +13,10 @@ namespace Microsoft.Extensions.DependencyInjection;
 public static class AuditExtensions
 {
     /// <summary>
-    /// Registers the given <see cref="AuditDbContext{TDbContext, TUser, TKey}"/> as a service in the <see cref="IServiceCollection"/>.
+    /// Registers the given <typeparamref name="TDbContext"/> as a service in the <see cref="IServiceCollection"/>.
     /// </summary>
     /// <typeparam name="TDbContext">The type of <see cref="DbContext"/> object.</typeparam>
     /// <typeparam name="TUser">The type of user objects.</typeparam>
-    /// <typeparam name="TKey">The type of the primary key for users.</typeparam>
     /// <param name="services">The <see cref="IServiceCollection"/> to add services to.</param>
     /// <param name="optionsAction">
     /// An optional action to configure the <see cref="DbContextOptions"/> for the context. This provides an alternative
@@ -26,15 +27,14 @@ public static class AuditExtensions
     /// <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
     /// <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
     /// <returns>The same service collection so that multiple calls can be chained.</returns>
-    public static IServiceCollection AddAuditDbContext<TDbContext, TUser, TKey>(
+    public static IServiceCollection AddAuditDbContext<TDbContext, TUser>(
         this IServiceCollection services,
         Action<DbContextOptionsBuilder> optionsAction,
         Action<AuditOptions>? setupAcion = null,
         ServiceLifetime contextLifetime = ServiceLifetime.Scoped,
         ServiceLifetime optionsLifetime = ServiceLifetime.Scoped)
-        where TDbContext : AuditDbContext<TDbContext, TUser, TKey>
-        where TUser : class, IEntity<TKey>
-        where TKey : IEquatable<TKey>
+        where TDbContext : DbContext, IAuditDbContext<TUser>
+        where TUser : class, IEntity
     {
         services.ConfigureAuditOptions(setupAcion);
 
@@ -186,12 +186,18 @@ public static class AuditExtensions
 
         return services;
     }
-    
+
     private static void ConfigureAuditOptions(this IServiceCollection services, Action<AuditOptions>? setupAcion)
     {
-        var auditOptions = new AuditOptions();
-        setupAcion?.Invoke(auditOptions);
-
-        services.AddSingleton(auditOptions);
+        if (setupAcion == null)
+        {
+            services.TryAddEnumerable(ServiceDescriptor.Singleton<IConfigureOptions<AuditOptions>, AuditConfigureOptions>());
+        }
+        else
+        {
+            var auditOptions = new AuditOptions();
+            setupAcion.Invoke(auditOptions);
+            services.AddSingleton<IOptions<AuditOptions>>(_ => Options.Options.Create(auditOptions));
+        }
     }
 }

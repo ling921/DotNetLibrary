@@ -1,14 +1,16 @@
-﻿namespace LingDev.Logging.File;
+﻿using Microsoft.Extensions.Logging;
+
+namespace LingDev.Logging.File;
 
 internal readonly struct LogMessageEntry
 {
+    public readonly LogLevel LogLevel;
+
     public readonly string Message;
 
-    public readonly bool LogAsError;
-
-    public LogMessageEntry(string message, bool logAsError = false)
+    public LogMessageEntry(string message, LogLevel logLevel)
     {
+        LogLevel = logLevel;
         Message = message;
-        LogAsError = logAsError;
     }
 }

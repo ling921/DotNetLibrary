@@ -1,14 +1,15 @@
 ﻿using LingDev.EntityFrameworkCore.Audit.Entities;
+using LingDev.EntityFrameworkCore.Audit.Internal;
 using LingDev.EntityFrameworkCore.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace LingDev.EntityFrameworkCore.Audit.Internal;
+namespace LingDev.EntityFrameworkCore.Audit.Extensions;
 
 /// <summary>
 /// Extension methods for building model.
 /// </summary>
-internal static class ModelBuilderExtensions
+public static class ModelBuilderExtensions
 {
     #region Public Methods
 
@@ -18,7 +19,7 @@ internal static class ModelBuilderExtensions
     /// <typeparam name="TUser">The type of user objects.</typeparam>
     /// <param name="modelBuilder">Entity model builder.</param>
     /// <param name="comments">Comments to the audited entities.</param>
-    internal static void ConfigureAuditEntityProperties<TUser>(this ModelBuilder modelBuilder, AuditEntityComments comments)
+    public static void ConfigureAuditEntityProperties<TUser>(this ModelBuilder modelBuilder, AuditEntityComments comments)
         where TUser : class, IEntity
     {
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())

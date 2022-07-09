@@ -20,7 +20,8 @@ public abstract class FileFormatter
     /// <exception cref="ArgumentNullException">The name can not be null.</exception>
     protected FileFormatter(string name)
     {
-        Name = name ?? throw new ArgumentNullException(nameof(name), "The name can not be null.");
+        ArgumentNullException.ThrowIfNull(name, nameof(name));
+        Name = name;
     }
 
     /// <summary>

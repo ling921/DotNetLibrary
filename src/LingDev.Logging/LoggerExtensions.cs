@@ -34,8 +34,7 @@ public static class LoggerExtensions
     /// <returns>The <see cref="ILoggingBuilder"/>.</returns>
     public static ILoggingBuilder AddFile(this ILoggingBuilder builder, Action<FileLoggerOptions> configure)
     {
-        if (configure == null)
-            throw new ArgumentNullException(nameof(configure));
+        ArgumentNullException.ThrowIfNull(configure, nameof(configure));
 
         builder.AddFile();
         builder.Services.Configure(configure);
