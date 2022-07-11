@@ -1,7 +1,6 @@
 ﻿using LingDev.EntityFrameworkCore.Seed;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace Microsoft.AspNetCore.Builder;
 
@@ -18,9 +17,10 @@ public static class SeedBuilderExtensions
         where TDbContext : DbContext
     {
         using var scope = app.ApplicationServices.CreateScope();
-        var logger = scope.ServiceProvider.GetRequiredService<ILoggerFactory>().CreateLogger<DatabaseInitializer>();
-        var context = scope.ServiceProvider.GetRequiredService<TDbContext>();
-        var initializer = new DatabaseInitializer(logger, context);
-        
+        var initializers = scope.ServiceProvider.GetServices<IDatabaseInitializer>();
+        foreach (var initializer in initializers)
+        {
+            initializer.RunAsync().Wait();
+        }
     }
 }

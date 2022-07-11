@@ -23,7 +23,7 @@ public static class AuditExtensions
     /// to performing configuration of the context by overriding the <see cref="DbContext.OnConfiguring"/> method in
     /// your derived context.
     /// </param>
-    /// <param name="setupAcion"></param>
+    /// <param name="setupAcion">The action used to configure the <see cref="AuditOptions"/>.</param>
     /// <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
     /// <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
     /// <returns>The same service collection so that multiple calls can be chained.</returns>
@@ -53,7 +53,7 @@ public static class AuditExtensions
     /// to performing configuration of the context by overriding the <see cref="DbContext.OnConfiguring"/> method in
     /// your derived context.
     /// </param>
-    /// <param name="setupAcion"></param>
+    /// <param name="setupAcion">The action used to configure the <see cref="AuditOptions"/>.</param>
     /// <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
     /// <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
     /// <returns>The same service collection so that multiple calls can be chained.</returns>
@@ -84,7 +84,7 @@ public static class AuditExtensions
     /// to performing configuration of the context by overriding the <see cref="DbContext.OnConfiguring"/> method in
     /// your derived context.
     /// </param>
-    /// <param name="setupAcion"></param>
+    /// <param name="setupAcion">The action used to configure the <see cref="AuditOptions"/>.</param>
     /// <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
     /// <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
     /// <returns>The same service collection so that multiple calls can be chained.</returns>
@@ -119,7 +119,7 @@ public static class AuditExtensions
     /// to performing configuration of the context by overriding the <see cref="DbContext.OnConfiguring"/> method in
     /// your derived context.
     /// </param>
-    /// <param name="setupAcion"></param>
+    /// <param name="setupAcion">The action used to configure the <see cref="AuditOptions"/>.</param>
     /// <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
     /// <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
     /// <returns>The same service collection so that multiple calls can be chained.</returns>
@@ -160,7 +160,7 @@ public static class AuditExtensions
     /// to performing configuration of the context by overriding the <see cref="DbContext.OnConfiguring"/> method in
     /// your derived context.
     /// </param>
-    /// <param name="setupAcion"></param>
+    /// <param name="setupAcion">The action used to configure the <see cref="AuditOptions"/>.</param>
     /// <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
     /// <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
     /// <returns>The same service collection so that multiple calls can be chained.</returns>
@@ -195,9 +195,7 @@ public static class AuditExtensions
         }
         else
         {
-            var auditOptions = new AuditOptions();
-            setupAcion.Invoke(auditOptions);
-            services.AddSingleton<IOptions<AuditOptions>>(_ => Options.Options.Create(auditOptions));
+            services.Configure(setupAcion);
         }
     }
 }

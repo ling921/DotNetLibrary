@@ -32,7 +32,7 @@ namespace LingDev.EntityFrameworkCore.Seed
         /// <typeparam name="TEntity">The type of entity.</typeparam>
         /// <returns>The builder.</returns>
         public virtual SeedDataBuilder AddModel<TModel, TEntity>()
-            where TModel : class, ISeedModel<TModel, TEntity>
+            where TModel : class, ISeedModel<TEntity>
             where TEntity : class
         {
             var type = typeof(TModel);
@@ -45,13 +45,13 @@ namespace LingDev.EntityFrameworkCore.Seed
         }
 
         /// <summary>
-        /// Add seed models from the assembly that inherits from the interface <see cref="ISeedModel{TModel, TEntity}"/>
+        /// Add seed models from the assembly that inherits from the interface <see cref="ISeedModel{TEntity}"/>
         /// </summary>
         /// <param name="assembly">The assembly with seed models.</param>
         /// <returns>The builder.</returns>
         public virtual SeedDataBuilder AddAssembly(Assembly assembly)
         {
-            var interfaceType = typeof(ISeedModel<,>);
+            var interfaceType = typeof(ISeedModel<>);
             var types = assembly.GetTypes()
                 .Where(type => type.IsClass && !type.IsAbstract && HasInterface(type, interfaceType));
             foreach (var type in types)

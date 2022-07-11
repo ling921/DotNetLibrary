@@ -12,12 +12,14 @@
 
         /// <summary>
         /// Whether to apply the migration, default to <see langword="true"/>.
-        /// <para>
-        /// 
-        /// </para>
         /// </summary>
         public bool ApplyMigration { get; set; } = true;
 
+        /// <summary>
+        /// Whether to apply the seed data, default to <see langword="true"/>.
+        /// </summary>
         public bool ApplySeed { get; set; } = true;
+
+        internal Type[] ModelTypes { get; set; } = Array.Empty<Type>();
     }
 }

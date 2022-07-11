@@ -3,7 +3,7 @@
 namespace LingDev.EntityFrameworkCore.Audit.Attributes
 {
     /// <summary>
-    /// Indicates the class allowed anonymous auditing of specific database operations.
+    /// Indicates the entity allowed anonymous auditing of specific database operations.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
     public class AnonymousAuditingAttribute : Attribute

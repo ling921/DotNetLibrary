@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LingDev.EntityFrameworkCore.Seed</name>
+    </assembly>
+    <members>
+        <member name="T:LingDev.EntityFrameworkCore.Seed.Attributes.SeedFileAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Seed.Attributes.SeedFileAttribute.FileName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Seed.Attributes.SeedFileAttribute.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Seed.Models.ISeedModel`1">
+            <summary>
+            Interface to the seed data model.
+            </summary>
+            <typeparam name="TEntity">The type of entity.</typeparam>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Seed.Models.ISeedModel`1.ToEntity">
+            <summary>
+            Returns an entity instance that represents the current seed data model.
+            </summary>
+            <returns>An entity instance that represents the current seed data model.</returns>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Seed.Models.ITreeModel`1">
+            <summary>
+            Interface to the seed data model with children.
+            </summary>
+            <typeparam name="TEntity">The type of entity.</typeparam>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Seed.Models.ITreeModel`1.Children">
+            <summary>
+            The children of the current seed data model.
+            </summary>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Seed.SeedConfigureOptions`1">
+            <summary>
+            Configure for <see cref="T:LingDev.EntityFrameworkCore.Seed.SeedOptions"/>.
+            </summary>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Seed.SeedConfigureOptions`1.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Use the configuration section "Seed" to configure <see cref="T:LingDev.EntityFrameworkCore.Seed.SeedOptions"/>.
+            </summary>
+            <param name="config">The configuration.</param>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Seed.SeedDataBuilder">
+            <summary>
+            Used to configure seed services.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Seed.SeedDataBuilder.Services">
+            <summary>
+            The services being configured.
+            </summary>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Seed.SeedDataBuilder.#ctor(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Initializes a new instance of <see cref="T:LingDev.EntityFrameworkCore.Seed.SeedDataBuilder"/>.
+            </summary>
+            <param name="services">The services being configured.</param>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Seed.SeedDataBuilder.AddModel``2">
+            <summary>
+            Adds a seed model.
+            </summary>
+            <typeparam name="TModel">The type of seed model.</typeparam>
+            <typeparam name="TEntity">The type of entity.</typeparam>
+            <returns>The builder.</returns>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Seed.SeedDataBuilder.AddAssembly(System.Reflection.Assembly)">
+            <summary>
+            Add seed models from the assembly that inherits from the interface <see cref="T:LingDev.EntityFrameworkCore.Seed.Models.ISeedModel`1"/>
+            </summary>
+            <param name="assembly">The assembly with seed models.</param>
+            <returns>The builder.</returns>
+        </member>
+        <member name="T:LingDev.EntityFrameworkCore.Seed.SeedOptions">
+            <summary>
+            Options for configuring data seeds.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Seed.SeedOptions.Path">
+            <summary>
+            The path to the json files of the seed data, default to "seeds".
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Seed.SeedOptions.ApplyMigration">
+            <summary>
+            Whether to apply the migration, default to <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:LingDev.EntityFrameworkCore.Seed.SeedOptions.ApplySeed">
+            <summary>
+            Whether to apply the seed data, default to <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Builder.SeedBuilderExtensions">
+            <summary>
+            Extension methods for <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.SeedBuilderExtensions.UseSeedData``1(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Apply seed data when app started.
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.SeedServiceCollectionExtensions">
+            <summary>
+            Extension methods for <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SeedServiceCollectionExtensions.AddSeedServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add seed services.
+            </summary>
+            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to add services to.</param>
+            <returns>The builder.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SeedServiceCollectionExtensions.UseDataBase``1(LingDev.EntityFrameworkCore.Seed.SeedDataBuilder,System.Action{LingDev.EntityFrameworkCore.Seed.SeedOptions})">
+            <summary>
+            Add
+            </summary>
+            <typeparam name="TDbContext">The type of database context.</typeparam>
+            <param name="builder">The builder.</param>
+            <param name="setupOptions"></param>
+        </member>
+    </members>
+</doc>
