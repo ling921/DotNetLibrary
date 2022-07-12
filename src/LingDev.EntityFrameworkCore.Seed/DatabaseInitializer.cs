@@ -36,13 +36,20 @@ namespace LingDev.EntityFrameworkCore.Seed
             if (_options.ApplyMigration)
             {
                 await _context.Database.MigrateAsync();
-                _logger.LogInformation("The database migrations applied successfully!");
+                _logger.LogInformation("The database migrations applied completed!");
             }
 
             if (_options.ApplySeed)
             {
-                await ApplySeedAsync();
-                _logger.LogInformation("The database seed data is successfully applied!");
+                if (_options.ModelTypes.Length == 0)
+                {
+                    _logger.LogWarning("No seed models are configured, skip applying seed data.");
+                }
+                else
+                {
+                    await ApplySeedAsync();
+                    _logger.LogInformation("The database seed data applied completed!");
+                }
             }
         }
 
@@ -53,15 +60,16 @@ namespace LingDev.EntityFrameworkCore.Seed
                 return;
 
             var entityTypes = _context.Model.GetEntityTypes().Select(t => t.ClrType);
-            foreach (var entityType in entityTypes)
+            foreach (var modelType in _options.ModelTypes)
             {
-                var modelInterfaceType = typeof(ISeedModel<>).MakeGenericType(entityType);
-                var model = Array.Find(_options.ModelTypes, t => t.IsAssignableTo(modelInterfaceType));
-                if (model == null)
+                var entityType = modelType.GetInterfaces()
+                    .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ISeedModel<>))
+                    .Select(i => i.GetGenericArguments()[0])
+                    .FirstOrDefault();
+                if (entityType == null || !entityTypes.Contains(entityType))
                     continue;
 
-                var modelType = model.GetType();
-                var fileName = modelType.GetCustomAttribute<SeedAttribute>()?.FileName ?? modelType.Name;
+                var fileName = modelType.GetCustomAttribute<SeedAttribute>()?.FileName ?? entityType.Name;
                 var file = files.FirstOrDefault(fi => fileName.Equals(Path.GetFileNameWithoutExtension(fi), StringComparison.OrdinalIgnoreCase));
                 if (file == null)
                     continue;
@@ -82,21 +90,27 @@ namespace LingDev.EntityFrameworkCore.Seed
             where TModel : class, ISeedModel<TEntity>
             where TEntity : class
         {
-            if (context.Set<TEntity>().Any())
+            var dbSet = context.Set<TEntity>();
+            var tableName = dbSet.EntityType.GetAnnotation("Relational:TableName")?.Value?.ToString();
+            if (dbSet.Any())
             {
+                logger.LogInformation("There is already data in the table `{table}`, skip applying seed data.", tableName);
                 return;
             }
 
             var models = JsonSerializer.Deserialize<IEnumerable<TModel>>(jsonData, _jsonSerializerOptions);
-            if (models == null)
-                throw new Exception("");
+            if (models?.Any() != true)
+            {
+                logger.LogWarning("Can not get any {entity} data from json file.", typeof(TEntity).Name);
+                return;
+            }
 
             var entities = models.Select(m => m.ToEntity());
 
-            await context.AddRangeAsync(entities);
+            await dbSet.AddRangeAsync(entities);
             await context.SaveChangesAsync();
 
-            logger.LogInformation("");
+            logger.LogInformation("Successfully apply the seed data of the {entity} to the database.", typeof(TEntity).Name);
         }
     }
 }

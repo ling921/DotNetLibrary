@@ -4,21 +4,26 @@
         <name>LingDev.EntityFrameworkCore.Seed</name>
     </assembly>
     <members>
-        <member name="T:LingDev.EntityFrameworkCore.Seed.Attributes.SeedFileAttribute">
+        <member name="T:LingDev.EntityFrameworkCore.Seed.Attributes.SeedAttribute">
             <summary>
-            
+            Indicates the class allowed anonymous auditing of specific database operations.
             </summary>
         </member>
-        <member name="P:LingDev.EntityFrameworkCore.Seed.Attributes.SeedFileAttribute.FileName">
+        <member name="P:LingDev.EntityFrameworkCore.Seed.Attributes.SeedAttribute.FileName">
             <summary>
-            
+            The seed data file name.
             </summary>
         </member>
-        <member name="M:LingDev.EntityFrameworkCore.Seed.Attributes.SeedFileAttribute.#ctor(System.String)">
+        <member name="M:LingDev.EntityFrameworkCore.Seed.Attributes.SeedAttribute.#ctor">
             <summary>
-            
+            Initializes a new instance of the class.
             </summary>
-            <param name="fileName"></param>
+        </member>
+        <member name="M:LingDev.EntityFrameworkCore.Seed.Attributes.SeedAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+            <param name="fileName">The seed data file name.</param>
         </member>
         <member name="T:LingDev.EntityFrameworkCore.Seed.Models.ISeedModel`1">
             <summary>
@@ -32,13 +37,14 @@
             </summary>
             <returns>An entity instance that represents the current seed data model.</returns>
         </member>
-        <member name="T:LingDev.EntityFrameworkCore.Seed.Models.ITreeModel`1">
+        <member name="T:LingDev.EntityFrameworkCore.Seed.Models.ITreeSeedModel`2">
             <summary>
             Interface to the seed data model with children.
             </summary>
+            <typeparam name="TModel">The type of seed model.</typeparam>
             <typeparam name="TEntity">The type of entity.</typeparam>
         </member>
-        <member name="P:LingDev.EntityFrameworkCore.Seed.Models.ITreeModel`1.Children">
+        <member name="P:LingDev.EntityFrameworkCore.Seed.Models.ITreeSeedModel`2.Children">
             <summary>
             The children of the current seed data model.
             </summary>
@@ -110,7 +116,7 @@
             Extension methods for <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/>.
             </summary>
         </member>
-        <member name="M:Microsoft.AspNetCore.Builder.SeedBuilderExtensions.UseSeedData``1(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:Microsoft.AspNetCore.Builder.SeedBuilderExtensions.UseSeedData(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Apply seed data when app started.
             </summary>
@@ -130,11 +136,11 @@
         </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.SeedServiceCollectionExtensions.UseDataBase``1(LingDev.EntityFrameworkCore.Seed.SeedDataBuilder,System.Action{LingDev.EntityFrameworkCore.Seed.SeedOptions})">
             <summary>
-            Add
+            Set the database to which the seed data should be applied。
             </summary>
             <typeparam name="TDbContext">The type of database context.</typeparam>
             <param name="builder">The builder.</param>
-            <param name="setupOptions"></param>
+            <param name="setupOptions">The action used to configure the <see cref="T:LingDev.EntityFrameworkCore.Seed.SeedOptions"/>.</param>
         </member>
     </members>
 </doc>

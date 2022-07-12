@@ -1,5 +1,4 @@
 ﻿using LingDev.EntityFrameworkCore.Seed;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microsoft.AspNetCore.Builder;
@@ -13,8 +12,7 @@ public static class SeedBuilderExtensions
     /// Apply seed data when app started.
     /// </summary>
     /// <param name="app"></param>
-    public static void UseSeedData<TDbContext>(this IApplicationBuilder app)
-        where TDbContext : DbContext
+    public static void UseSeedData(this IApplicationBuilder app)
     {
         using var scope = app.ApplicationServices.CreateScope();
         var initializers = scope.ServiceProvider.GetServices<IDatabaseInitializer>();
