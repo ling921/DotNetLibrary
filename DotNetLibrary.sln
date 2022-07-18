@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LingDev.EntityFrameworkCore
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LingDev.EntityFrameworkCore.Audit", "src\LingDev.EntityFrameworkCore.Audit\LingDev.EntityFrameworkCore.Audit.csproj", "{A6FCFC09-61EF-4DE9-ACDA-211265943AA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LingDev.EntityFrameworkCore.Seed", "src\LingDev.EntityFrameworkCore.Seed\LingDev.EntityFrameworkCore.Seed.csproj", "{1A44CB40-DDD4-4EEA-A1E8-328E69348121}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LingDev.EntityFrameworkCore.Seed", "src\LingDev.EntityFrameworkCore.Seed\LingDev.EntityFrameworkCore.Seed.csproj", "{1A44CB40-DDD4-4EEA-A1E8-328E69348121}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

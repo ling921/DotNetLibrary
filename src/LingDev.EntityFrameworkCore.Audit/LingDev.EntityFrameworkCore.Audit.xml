@@ -6,7 +6,7 @@
     <members>
         <member name="T:LingDev.EntityFrameworkCore.Audit.Attributes.AnonymousAuditingAttribute">
             <summary>
-            Indicates the class allowed anonymous auditing of specific database operations.
+            Indicates the entity allowed anonymous auditing of specific database operations.
             </summary>
         </member>
         <member name="P:LingDev.EntityFrameworkCore.Audit.Attributes.AnonymousAuditingAttribute.Operation">
@@ -22,7 +22,7 @@
         </member>
         <member name="T:LingDev.EntityFrameworkCore.Audit.Attributes.DisableAuditingAttribute">
             <summary>
-            Indicates the class or property is marked as not auditable.
+            Indicates the entity class or property is marked as not auditable.
             </summary>
         </member>
         <member name="T:LingDev.EntityFrameworkCore.Audit.AuditConfigureOptions">
@@ -738,7 +738,7 @@
             to performing configuration of the context by overriding the <see cref="M:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> method in
             your derived context.
             </param>
-            <param name="setupAcion"></param>
+            <param name="setupAcion">The action used to configure the <see cref="T:LingDev.EntityFrameworkCore.Audit.AuditOptions"/>.</param>
             <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
             <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
             <returns>The same service collection so that multiple calls can be chained.</returns>
@@ -754,7 +754,7 @@
             to performing configuration of the context by overriding the <see cref="M:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> method in
             your derived context.
             </param>
-            <param name="setupAcion"></param>
+            <param name="setupAcion">The action used to configure the <see cref="T:LingDev.EntityFrameworkCore.Audit.AuditOptions"/>.</param>
             <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
             <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
             <returns>The same service collection so that multiple calls can be chained.</returns>
@@ -772,7 +772,7 @@
             to performing configuration of the context by overriding the <see cref="M:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> method in
             your derived context.
             </param>
-            <param name="setupAcion"></param>
+            <param name="setupAcion">The action used to configure the <see cref="T:LingDev.EntityFrameworkCore.Audit.AuditOptions"/>.</param>
             <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
             <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
             <returns>The same service collection so that multiple calls can be chained.</returns>
@@ -792,7 +792,7 @@
             to performing configuration of the context by overriding the <see cref="M:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> method in
             your derived context.
             </param>
-            <param name="setupAcion"></param>
+            <param name="setupAcion">The action used to configure the <see cref="T:LingDev.EntityFrameworkCore.Audit.AuditOptions"/>.</param>
             <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
             <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
             <returns>The same service collection so that multiple calls can be chained.</returns>
@@ -816,7 +816,7 @@
             to performing configuration of the context by overriding the <see cref="M:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)"/> method in
             your derived context.
             </param>
-            <param name="setupAcion"></param>
+            <param name="setupAcion">The action used to configure the <see cref="T:LingDev.EntityFrameworkCore.Audit.AuditOptions"/>.</param>
             <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
             <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
             <returns>The same service collection so that multiple calls can be chained.</returns>
