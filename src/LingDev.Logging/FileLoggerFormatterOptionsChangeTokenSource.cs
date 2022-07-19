@@ -7,7 +7,8 @@ using Microsoft.Extensions.Primitives;
 namespace LingDev.Logging;
 
 /// <summary>
-/// Creates <see cref="IChangeToken"/>s so that <see cref="IOptionsMonitor{TOptions}"/> gets notified when <see cref="IConfiguration"/> changes.
+/// Creates <see cref="IChangeToken"/> s so that <see cref="IOptionsMonitor{TOptions}"/> gets
+/// notified when <see cref="IConfiguration"/> changes.
 /// </summary>
 /// <typeparam name="TFormatter">The implementation type of <see cref="FileFormatter"/>.</typeparam>
 /// <typeparam name="TOptions">The implementation type of <see cref="FileFormatterOptions"/>.</typeparam>

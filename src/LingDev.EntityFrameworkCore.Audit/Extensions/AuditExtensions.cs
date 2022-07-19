@@ -19,13 +19,17 @@ public static class AuditExtensions
     /// <typeparam name="TUser">The type of user objects.</typeparam>
     /// <param name="services">The <see cref="IServiceCollection"/> to add services to.</param>
     /// <param name="optionsAction">
-    /// An optional action to configure the <see cref="DbContextOptions"/> for the context. This provides an alternative
-    /// to performing configuration of the context by overriding the <see cref="DbContext.OnConfiguring"/> method in
-    /// your derived context.
+    /// An optional action to configure the <see cref="DbContextOptions"/> for the context. This
+    /// provides an alternative to performing configuration of the context by overriding the <see
+    /// cref="DbContext.OnConfiguring"/> method in your derived context.
     /// </param>
     /// <param name="setupAcion">The action used to configure the <see cref="AuditOptions"/>.</param>
-    /// <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
-    /// <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
+    /// <param name="contextLifetime">
+    /// The lifetime with which to register the DbContext service in the container.
+    /// </param>
+    /// <param name="optionsLifetime">
+    /// The lifetime with which to register the DbContextOptions service in the container.
+    /// </param>
     /// <returns>The same service collection so that multiple calls can be chained.</returns>
     public static IServiceCollection AddAuditDbContext<TDbContext, TUser>(
         this IServiceCollection services,
@@ -44,18 +48,23 @@ public static class AuditExtensions
     }
 
     /// <summary>
-    /// Registers the given <see cref="IdentityAuditDbContext{TDbContext}"/> as a service in the <see cref="IServiceCollection"/>.
+    /// Registers the given <see cref="IdentityAuditDbContext{TDbContext}"/> as a service in the
+    /// <see cref="IServiceCollection"/>.
     /// </summary>
     /// <typeparam name="TDbContext">The type of <see cref="DbContext"/> object.</typeparam>
     /// <param name="services">The <see cref="IServiceCollection"/> to add services to.</param>
     /// <param name="optionsAction">
-    /// An optional action to configure the <see cref="DbContextOptions"/> for the context. This provides an alternative
-    /// to performing configuration of the context by overriding the <see cref="DbContext.OnConfiguring"/> method in
-    /// your derived context.
+    /// An optional action to configure the <see cref="DbContextOptions"/> for the context. This
+    /// provides an alternative to performing configuration of the context by overriding the <see
+    /// cref="DbContext.OnConfiguring"/> method in your derived context.
     /// </param>
     /// <param name="setupAcion">The action used to configure the <see cref="AuditOptions"/>.</param>
-    /// <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
-    /// <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
+    /// <param name="contextLifetime">
+    /// The lifetime with which to register the DbContext service in the container.
+    /// </param>
+    /// <param name="optionsLifetime">
+    /// The lifetime with which to register the DbContextOptions service in the container.
+    /// </param>
     /// <returns>The same service collection so that multiple calls can be chained.</returns>
     public static IServiceCollection AddIdentityAuditDbContext<TDbContext>(
         this IServiceCollection services,
@@ -73,20 +82,25 @@ public static class AuditExtensions
     }
 
     /// <summary>
-    /// Registers the given <see cref="IdentityAuditDbContext{TDbContext, TUser, TKey}"/> as a service in the <see cref="IServiceCollection"/>.
+    /// Registers the given <see cref="IdentityAuditDbContext{TDbContext, TUser, TKey}"/> as a
+    /// service in the <see cref="IServiceCollection"/>.
     /// </summary>
     /// <typeparam name="TDbContext">The type of <see cref="DbContext"/> object.</typeparam>
     /// <typeparam name="TUser">The type of user objects.</typeparam>
     /// <typeparam name="TKey">The type of the primary key for users and roles.</typeparam>
     /// <param name="services">The <see cref="IServiceCollection"/> to add services to.</param>
     /// <param name="optionsAction">
-    /// An optional action to configure the <see cref="DbContextOptions"/> for the context. This provides an alternative
-    /// to performing configuration of the context by overriding the <see cref="DbContext.OnConfiguring"/> method in
-    /// your derived context.
+    /// An optional action to configure the <see cref="DbContextOptions"/> for the context. This
+    /// provides an alternative to performing configuration of the context by overriding the <see
+    /// cref="DbContext.OnConfiguring"/> method in your derived context.
     /// </param>
     /// <param name="setupAcion">The action used to configure the <see cref="AuditOptions"/>.</param>
-    /// <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
-    /// <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
+    /// <param name="contextLifetime">
+    /// The lifetime with which to register the DbContext service in the container.
+    /// </param>
+    /// <param name="optionsLifetime">
+    /// The lifetime with which to register the DbContextOptions service in the container.
+    /// </param>
     /// <returns>The same service collection so that multiple calls can be chained.</returns>
     public static IServiceCollection AddIdentityAuditDbContext<TDbContext, TUser, TKey>(
         this IServiceCollection services,
@@ -106,8 +120,8 @@ public static class AuditExtensions
     }
 
     /// <summary>
-    /// Registers the given <see cref="IdentityAuditDbContext{TDbContext, TUser, TRole, TKey}"/> as a service in the
-    /// <see cref="IServiceCollection"/>.
+    /// Registers the given <see cref="IdentityAuditDbContext{TDbContext, TUser, TRole, TKey}"/> as
+    /// a service in the <see cref="IServiceCollection"/>.
     /// </summary>
     /// <typeparam name="TDbContext">The type of <see cref="DbContext"/> object.</typeparam>
     /// <typeparam name="TUser">The type of user objects.</typeparam>
@@ -115,13 +129,17 @@ public static class AuditExtensions
     /// <typeparam name="TKey">The type of the primary key for users and roles.</typeparam>
     /// <param name="services">The <see cref="IServiceCollection"/> to add services to.</param>
     /// <param name="optionsAction">
-    /// An optional action to configure the <see cref="DbContextOptions"/> for the context. This provides an alternative
-    /// to performing configuration of the context by overriding the <see cref="DbContext.OnConfiguring"/> method in
-    /// your derived context.
+    /// An optional action to configure the <see cref="DbContextOptions"/> for the context. This
+    /// provides an alternative to performing configuration of the context by overriding the <see
+    /// cref="DbContext.OnConfiguring"/> method in your derived context.
     /// </param>
     /// <param name="setupAcion">The action used to configure the <see cref="AuditOptions"/>.</param>
-    /// <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
-    /// <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
+    /// <param name="contextLifetime">
+    /// The lifetime with which to register the DbContext service in the container.
+    /// </param>
+    /// <param name="optionsLifetime">
+    /// The lifetime with which to register the DbContextOptions service in the container.
+    /// </param>
     /// <returns>The same service collection so that multiple calls can be chained.</returns>
     public static IServiceCollection AddIdentityAuditDbContext<TDbContext, TUser, TRole, TKey>(
         this IServiceCollection services,
@@ -142,8 +160,8 @@ public static class AuditExtensions
     }
 
     /// <summary>
-    /// Registers the given <see cref="IdentityAuditDbContext{TDbContext, TUser, TRole, TKey, TUserClaim, TUserRole,
-    /// TUserLogin, TRoleClaim, TUserToken}"/> as a service in the <see cref="IServiceCollection"/>.
+    /// Registers the given <see cref="IdentityAuditDbContext{TDbContext, TUser, TRole, TKey,
+    /// TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken}"/> as a service in the <see cref="IServiceCollection"/>.
     /// </summary>
     /// <typeparam name="TDbContext">The type of <see cref="DbContext"/> object.</typeparam>
     /// <typeparam name="TUser">The type of user objects.</typeparam>
@@ -156,13 +174,17 @@ public static class AuditExtensions
     /// <typeparam name="TUserToken">The type of user token objects.</typeparam>
     /// <param name="services">The <see cref="IServiceCollection"/> to add services to.</param>
     /// <param name="optionsAction">
-    /// An optional action to configure the <see cref="DbContextOptions"/> for the context. This provides an alternative
-    /// to performing configuration of the context by overriding the <see cref="DbContext.OnConfiguring"/> method in
-    /// your derived context.
+    /// An optional action to configure the <see cref="DbContextOptions"/> for the context. This
+    /// provides an alternative to performing configuration of the context by overriding the <see
+    /// cref="DbContext.OnConfiguring"/> method in your derived context.
     /// </param>
     /// <param name="setupAcion">The action used to configure the <see cref="AuditOptions"/>.</param>
-    /// <param name="contextLifetime">The lifetime with which to register the DbContext service in the container.</param>
-    /// <param name="optionsLifetime">The lifetime with which to register the DbContextOptions service in the container.</param>
+    /// <param name="contextLifetime">
+    /// The lifetime with which to register the DbContext service in the container.
+    /// </param>
+    /// <param name="optionsLifetime">
+    /// The lifetime with which to register the DbContextOptions service in the container.
+    /// </param>
     /// <returns>The same service collection so that multiple calls can be chained.</returns>
     public static IServiceCollection AddIdentityAuditDbContext<TDbContext, TUser, TRole, TKey, TUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>(
         this IServiceCollection services,

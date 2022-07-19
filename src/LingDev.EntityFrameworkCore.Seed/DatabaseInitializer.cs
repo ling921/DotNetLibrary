@@ -16,7 +16,7 @@ namespace LingDev.EntityFrameworkCore.Seed
     internal class DatabaseInitializer<TDbContext> : IDatabaseInitializer
         where TDbContext : DbContext
     {
-        private readonly static JsonSerializerOptions _jsonSerializerOptions = new(JsonSerializerDefaults.Web);
+        private static readonly JsonSerializerOptions s_jsonSerializerOptions = new(JsonSerializerDefaults.Web);
         private readonly ILogger _logger;
         private readonly TDbContext _context;
         private readonly SeedOptions _options;
@@ -98,7 +98,7 @@ namespace LingDev.EntityFrameworkCore.Seed
                 return;
             }
 
-            var models = JsonSerializer.Deserialize<IEnumerable<TModel>>(jsonData, _jsonSerializerOptions);
+            var models = JsonSerializer.Deserialize<IEnumerable<TModel>>(jsonData, s_jsonSerializerOptions);
             if (models?.Any() != true)
             {
                 logger.LogWarning("Can not get any {entity} data from json file.", typeof(TEntity).Name);

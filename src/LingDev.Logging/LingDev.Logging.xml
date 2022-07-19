@@ -19,7 +19,8 @@
         </member>
         <member name="T:LingDev.Logging.FileLoggerFormatterOptionsChangeTokenSource`2">
             <summary>
-            Creates <see cref="T:Microsoft.Extensions.Primitives.IChangeToken"/>s so that <see cref="T:Microsoft.Extensions.Options.IOptionsMonitor`1"/> gets notified when <see cref="T:Microsoft.Extensions.Configuration.IConfiguration"/> changes.
+            Creates <see cref="T:Microsoft.Extensions.Primitives.IChangeToken"/> s so that <see cref="T:Microsoft.Extensions.Options.IOptionsMonitor`1"/> gets
+            notified when <see cref="T:Microsoft.Extensions.Configuration.IConfiguration"/> changes.
             </summary>
             <typeparam name="TFormatter">The implementation type of <see cref="T:LingDev.Logging.File.FileFormatter"/>.</typeparam>
             <typeparam name="TOptions">The implementation type of <see cref="T:LingDev.Logging.File.FileFormatterOptions"/>.</typeparam>
@@ -68,12 +69,13 @@
         </member>
         <member name="P:LingDev.Logging.File.FileFormatterOptions.TimestampFormat">
             <summary>
-            Gets or sets format string used to format timestamp in logging messages. Defaults to 'd'(short date).
+            Gets or sets format string used to format timestamp in logging messages. Defaults to "G".
             </summary>
         </member>
         <member name="P:LingDev.Logging.File.FileFormatterOptions.UseUtcTimestamp">
             <summary>
-            Gets or sets indication whether or not UTC timezone should be used to format timestamps in logging messages. Defaults to false.
+            Gets or sets indication whether or not UTC timezone should be used to format timestamps in
+            logging messages. Defaults to false.
             </summary>
         </member>
         <member name="T:LingDev.Logging.File.FileLoggerOptions">
@@ -98,7 +100,8 @@
         </member>
         <member name="P:LingDev.Logging.File.FileLoggerOptions.UseUtcTimestamp">
             <summary>
-            Gets or sets indication whether or not UTC timezone should be used to for timestamps in logging messages. Defaults to false.
+            Gets or sets indication whether or not UTC timezone should be used to for timestamps in
+            logging messages. Defaults to false.
             </summary>
         </member>
         <member name="P:LingDev.Logging.File.FileLoggerOptions.Path">
@@ -123,20 +126,26 @@
         </member>
         <member name="P:LingDev.Logging.File.FileWriteConfiguration.MinLevel">
             <summary>
-            Gets or sets value indicating the minimum level of messages that would get written to file. Defaults to <see cref="F:Microsoft.Extensions.Logging.LogLevel.None"/>.
+            Gets or sets value indicating the minimum level of messages that would get written to file.
+            Defaults to <see cref="F:Microsoft.Extensions.Logging.LogLevel.None"/>.
             </summary>
         </member>
         <member name="P:LingDev.Logging.File.FileWriteConfiguration.MaxLevel">
             <summary>
-            Gets or sets value indicating the maximum level of messages that would get written to file. Defaults to <see cref="F:Microsoft.Extensions.Logging.LogLevel.None"/>.
+            Gets or sets value indicating the maximum level of messages that would get written to file.
+            Defaults to <see cref="F:Microsoft.Extensions.Logging.LogLevel.None"/>.
             </summary>
         </member>
         <member name="F:LingDev.Logging.File.FileWriteConfiguration.Default">
             <summary>
             Default configurations.
             <para>It contains:</para>
-            <para><c>${date:yyyyMMdd}.log</c> for level is <see cref="F:Microsoft.Extensions.Logging.LogLevel.Information"/> or <see cref="F:Microsoft.Extensions.Logging.LogLevel.Warning"/>.</para>
-            <para><c>${date:yyyyMMdd}.err.log</c> for level is <see cref="F:Microsoft.Extensions.Logging.LogLevel.Error"/> or <see cref="F:Microsoft.Extensions.Logging.LogLevel.Critical"/>.</para>
+            <para>
+            <c>${date:yyyyMMdd}.log</c> for level is <see cref="F:Microsoft.Extensions.Logging.LogLevel.Information"/> or <see cref="F:Microsoft.Extensions.Logging.LogLevel.Warning"/>.
+            </para>
+            <para>
+            <c>${date:yyyyMMdd}.err.log</c> for level is <see cref="F:Microsoft.Extensions.Logging.LogLevel.Error"/> or <see cref="F:Microsoft.Extensions.Logging.LogLevel.Critical"/>.
+            </para>
             </summary>
         </member>
         <member name="F:LingDev.Logging.File.FileWriteConfiguration.All">
@@ -206,10 +215,14 @@
         </member>
         <member name="M:LingDev.Logging.StructuredValuesFormatter.Format(System.Object[])">
             <summary>
-            Replaces the format items in a string with the string representations of corresponding objects in a specified array.
+            Replaces the format items in a string with the string representations of corresponding
+            objects in a specified array.
             </summary>
             <param name="args">An object array that contains zero or more objects to format.</param>
-            <returns>A copy of format in which the format items have been replaced by the string representation of the corresponding objects in args.</returns>
+            <returns>
+            A copy of format in which the format items have been replaced by the string representation
+            of the corresponding objects in args.
+            </returns>
         </member>
         <member name="T:Microsoft.Extensions.DependencyInjection.LoggerExtensions">
             <summary>

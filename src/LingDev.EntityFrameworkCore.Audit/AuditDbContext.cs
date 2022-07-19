@@ -40,14 +40,14 @@ public abstract class AuditDbContext<TDbContext, TUser> : DbContext, IAuditDbCon
     }
 
     /// <inheritdoc/>
-    public override sealed async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+    public sealed override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
     {
         var saveChanges = () => base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         return await AuditHelper.SaveChangesAsync(this, saveChanges, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public override sealed int SaveChanges(bool acceptAllChangesOnSuccess)
+    public sealed override int SaveChanges(bool acceptAllChangesOnSuccess)
     {
         return AuditHelper.SaveChanges(this, () => base.SaveChanges(acceptAllChangesOnSuccess));
     }

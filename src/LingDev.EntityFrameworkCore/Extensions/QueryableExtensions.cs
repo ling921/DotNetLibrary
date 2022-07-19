@@ -33,7 +33,9 @@ public static class QueryableExtensions
     /// <param name="source">An <see cref="IQueryable{T}"/> to filter.</param>
     /// <param name="pageNumber">The current active page, defaults to the first page.</param>
     /// <param name="pageSize">The number of items per page, defaults to 10.</param>
-    /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+    /// <param name="cancellationToken">
+    /// A <see cref="CancellationToken"/> to observe while waiting for the task to complete.
+    /// </param>
     /// <returns>The total number of items to be paged, and items of current active page.</returns>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     public static async ValueTask<(int Total, IEnumerable<TSource> Items)> ToPagedAsync<TSource>(
@@ -64,7 +66,9 @@ public static class QueryableExtensions
     /// <param name="selector">A projection function to apply to each element.</param>
     /// <param name="pageNumber">The current active page, defaults to the first page.</param>
     /// <param name="pageSize">The number of items per page, defaults to 10.</param>
-    /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+    /// <param name="cancellationToken">
+    /// A <see cref="CancellationToken"/> to observe while waiting for the task to complete.
+    /// </param>
     /// <returns>The total number of items to be paged, and items of current active page.</returns>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     public static async ValueTask<(int Total, IEnumerable<TResult> Items)> ToPagedAsync<TSource, TResult>(
@@ -99,7 +103,9 @@ public static class QueryableExtensions
     /// <param name="projector">A projector to project each element of a sequence into a new form.</param>
     /// <param name="pageNumber">The current active page, defaults to the first page.</param>
     /// <param name="pageSize">The number of items per page, defaults to 10.</param>
-    /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+    /// <param name="cancellationToken">
+    /// A <see cref="CancellationToken"/> to observe while waiting for the task to complete.
+    /// </param>
     /// <returns>The total number of items to be paged, and items of current active page.</returns>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     public static async ValueTask<(int Total, IEnumerable<TResult> Items)> ToPagedAsync<TSource, TResult>(

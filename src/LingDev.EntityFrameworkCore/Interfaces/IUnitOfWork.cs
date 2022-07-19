@@ -19,7 +19,9 @@ public interface IUnitOfWork<TDbContext>
     /// <summary>
     /// <inheritdoc cref="DatabaseFacade.BeginTransactionAsync(CancellationToken)"/>
     /// </summary>
-    /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+    /// <param name="cancellationToken">
+    /// A <see cref="CancellationToken"/> to observe while waiting for the task to complete.
+    /// </param>
     /// <exception cref="OperationCanceledException"/>
     /// <exception cref="InvalidOperationException"/>
     /// <returns><inheritdoc cref="DatabaseFacade.BeginTransactionAsync(CancellationToken)"/></returns>
@@ -28,27 +30,37 @@ public interface IUnitOfWork<TDbContext>
     /// <summary>
     /// <inheritdoc cref="IDbContextTransaction.CreateSavepointAsync(string, CancellationToken)"/>
     /// </summary>
-    /// <param name="name"><inheritdoc cref="IDbContextTransaction.CreateSavepointAsync(string, CancellationToken)"/></param>
-    /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+    /// <param name="name">
+    /// <inheritdoc cref="IDbContextTransaction.CreateSavepointAsync(string, CancellationToken)"/>
+    /// </param>
+    /// <param name="cancellationToken">
+    /// A <see cref="CancellationToken"/> to observe while waiting for the task to complete.
+    /// </param>
     /// <exception cref="OperationCanceledException"/>
     /// <exception cref="InvalidOperationException"/>
     /// <returns><inheritdoc cref="IDbContextTransaction.CreateSavepointAsync(string, CancellationToken)"/></returns>
     Task CreateSavePointAsync(string name, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Commits all changes made to the database in the current transaction asynchronously. Rolling back if commit failed.
+    /// Commits all changes made to the database in the current transaction asynchronously. Rolling
+    /// back if commit failed.
     /// </summary>
-    /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+    /// <param name="cancellationToken">
+    /// A <see cref="CancellationToken"/> to observe while waiting for the task to complete.
+    /// </param>
     /// <exception cref="OperationCanceledException"/>
     /// <exception cref="InvalidOperationException"/>
     /// <returns><inheritdoc cref="IDbContextTransaction.CommitAsync(CancellationToken)"/></returns>
     Task<int> CommitAsync(CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Commits all changes made to the database in the current transaction asynchronously. Rolling back to save point if commit failed.
+    /// Commits all changes made to the database in the current transaction asynchronously. Rolling
+    /// back to save point if commit failed.
     /// </summary>
     /// <param name="savePointName">Name of save point.</param>
-    /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+    /// <param name="cancellationToken">
+    /// A <see cref="CancellationToken"/> to observe while waiting for the task to complete.
+    /// </param>
     /// <exception cref="OperationCanceledException"/>
     /// <exception cref="InvalidOperationException"/>
     /// <returns><inheritdoc cref="IDbContextTransaction.CommitAsync(CancellationToken)"/></returns>
@@ -57,7 +69,9 @@ public interface IUnitOfWork<TDbContext>
     /// <summary>
     /// <inheritdoc cref="IDbContextTransaction.RollbackAsync(CancellationToken)"/>
     /// </summary>
-    /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+    /// <param name="cancellationToken">
+    /// A <see cref="CancellationToken"/> to observe while waiting for the task to complete.
+    /// </param>
     /// <exception cref="OperationCanceledException"/>
     /// <exception cref="InvalidOperationException"/>
     /// <returns><inheritdoc cref="IDbContextTransaction.RollbackAsync(CancellationToken)"/></returns>
@@ -66,8 +80,12 @@ public interface IUnitOfWork<TDbContext>
     /// <summary>
     /// <inheritdoc cref="IDbContextTransaction.RollbackToSavepointAsync(string, CancellationToken)"/>
     /// </summary>
-    /// <param name="name"><inheritdoc cref="IDbContextTransaction.RollbackToSavepointAsync(string, CancellationToken)"/></param>
-    /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
+    /// <param name="name">
+    /// <inheritdoc cref="IDbContextTransaction.RollbackToSavepointAsync(string, CancellationToken)"/>
+    /// </param>
+    /// <param name="cancellationToken">
+    /// A <see cref="CancellationToken"/> to observe while waiting for the task to complete.
+    /// </param>
     /// <exception cref="OperationCanceledException"/>
     /// <exception cref="InvalidOperationException"/>
     /// <returns><inheritdoc cref="IDbContextTransaction.RollbackToSavepointAsync(string, CancellationToken)"/></returns>

@@ -11,7 +11,8 @@ namespace LingDev.EntityFrameworkCore.Extensions;
 public static class ModelBuilderExteiosns
 {
     /// <summary>
-    /// If the property is <see cref="Nullable"/>, convert the <see langword="default"/> value to <see langword="null"/>, otherwise do nothing.
+    /// If the property is <see cref="Nullable"/>, convert the <see langword="default"/> value to
+    /// <see langword="null"/>, otherwise do nothing.
     /// </summary>
     /// <typeparam name="TProperty">The type of property.</typeparam>
     /// <param name="propertyBuilder">The <see cref="PropertyBuilder{TProperty}"/>.</param>
@@ -33,7 +34,8 @@ public static class ModelBuilderExteiosns
     }
 
     /// <summary>
-    /// If the property is <see cref="Nullable"/>, convert the <see langword="default"/> value to <see langword="null"/>, otherwise do nothing.
+    /// If the property is <see cref="Nullable"/>, convert the <see langword="default"/> value to
+    /// <see langword="null"/>, otherwise do nothing.
     /// </summary>
     /// <param name="propertyBuilder">The <see cref="PropertyBuilder{TProperty}"/>.</param>
     /// <returns>The same builder instance so that multiple configuration calls can be chained.</returns>

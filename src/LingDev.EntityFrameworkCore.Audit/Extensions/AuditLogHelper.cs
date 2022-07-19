@@ -26,8 +26,13 @@ public static class AuditHelper
     /// <typeparam name="TUser">The type of user objects.</typeparam>
     /// <param name="context">The instance of audit databse context.</param>
     /// <param name="baseSaveChanges">A delegate to save all changes to the database.</param>
-    /// <param name="cancellationToken">A <see cref="CancellationToken" /> to observe while waiting for the task to complete.</param>
-    /// <returns>A task that represents the asynchronous save operation. The task result contains the number of state entries written to the database.</returns>
+    /// <param name="cancellationToken">
+    /// A <see cref="CancellationToken"/> to observe while waiting for the task to complete.
+    /// </param>
+    /// <returns>
+    /// A task that represents the asynchronous save operation. The task result contains the number
+    /// of state entries written to the database.
+    /// </returns>
     public static async Task<int> SaveChangesAsync<TUser>(
         IAuditDbContext<TUser> context,
         Func<Task<int>> baseSaveChanges,

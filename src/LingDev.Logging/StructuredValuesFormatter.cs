@@ -86,10 +86,14 @@ internal sealed class StructuredValuesFormatter
     }
 
     /// <summary>
-    /// Replaces the format items in a string with the string representations of corresponding objects in a specified array.
+    /// Replaces the format items in a string with the string representations of corresponding
+    /// objects in a specified array.
     /// </summary>
     /// <param name="args">An object array that contains zero or more objects to format.</param>
-    /// <returns>A copy of format in which the format items have been replaced by the string representation of the corresponding objects in args.</returns>
+    /// <returns>
+    /// A copy of format in which the format items have been replaced by the string representation
+    /// of the corresponding objects in args.
+    /// </returns>
     public string Format(params object?[] args)
     {
         if (args == null || args.Length == 0)

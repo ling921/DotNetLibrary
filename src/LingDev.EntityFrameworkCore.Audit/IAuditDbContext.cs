@@ -1,5 +1,4 @@
-﻿using LingDev.EntityFrameworkCore.Audit.Logger;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace LingDev.EntityFrameworkCore.Audit;

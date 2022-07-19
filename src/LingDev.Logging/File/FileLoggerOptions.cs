@@ -23,7 +23,8 @@ public class FileLoggerOptions
     public string? TimestampFormat { get; set; } = "G";
 
     /// <summary>
-    /// Gets or sets indication whether or not UTC timezone should be used to for timestamps in logging messages. Defaults to false.
+    /// Gets or sets indication whether or not UTC timezone should be used to for timestamps in
+    /// logging messages. Defaults to false.
     /// </summary>
     public bool UseUtcTimestamp { get; set; }
 
@@ -49,22 +50,28 @@ public class FileWriteConfiguration
     public string Name { get; set; } = null!;
 
     /// <summary>
-    /// Gets or sets value indicating the minimum level of messages that would get written to file. Defaults to <see cref="LogLevel.None"/>.
+    /// Gets or sets value indicating the minimum level of messages that would get written to file.
+    /// Defaults to <see cref="LogLevel.None"/>.
     /// </summary>
     public LogLevel MinLevel { get; set; } = LogLevel.None;
 
     /// <summary>
-    /// Gets or sets value indicating the maximum level of messages that would get written to file. Defaults to <see cref="LogLevel.None"/>.
+    /// Gets or sets value indicating the maximum level of messages that would get written to file.
+    /// Defaults to <see cref="LogLevel.None"/>.
     /// </summary>
     public LogLevel MaxLevel { get; set; } = LogLevel.None;
 
     /// <summary>
     /// Default configurations.
     /// <para>It contains:</para>
-    /// <para><c>${date:yyyyMMdd}.log</c> for level is <see cref="LogLevel.Information"/> or <see cref="LogLevel.Warning"/>.</para>
-    /// <para><c>${date:yyyyMMdd}.err.log</c> for level is <see cref="LogLevel.Error"/> or <see cref="LogLevel.Critical"/>.</para>
+    /// <para>
+    /// <c>${date:yyyyMMdd}.log</c> for level is <see cref="LogLevel.Information"/> or <see cref="LogLevel.Warning"/>.
+    /// </para>
+    /// <para>
+    /// <c>${date:yyyyMMdd}.err.log</c> for level is <see cref="LogLevel.Error"/> or <see cref="LogLevel.Critical"/>.
+    /// </para>
     /// </summary>
-    public readonly static FileWriteConfiguration[] Default = new[]
+    public static readonly FileWriteConfiguration[] Default = new[]
     {
         new FileWriteConfiguration
         {
@@ -90,7 +97,7 @@ public class FileWriteConfiguration
     /// <para><c>${date:yyyyMMdd}.error.log</c> for level is <see cref="LogLevel.Error"/>.</para>
     /// <para><c>${date:yyyyMMdd}.critical.log</c> for level is <see cref="LogLevel.Critical"/>.</para>
     /// </summary>
-    public readonly static FileWriteConfiguration[] All = new[]
+    public static readonly FileWriteConfiguration[] All = new[]
     {
         new FileWriteConfiguration
         {
